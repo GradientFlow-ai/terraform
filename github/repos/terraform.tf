@@ -22,13 +22,15 @@ resource "github_branch_protection" "terraform" {
   enforce_admins    = true
 
   # We are using GH actions, provide action names as list of strings
-  required_status_checks {
+ required_status_checks {
     strict   = false
     contexts = ["Terraform validate"]
+    pull_request_bypassers = ["/coyotespike"] # until we have more reviewers :)
   }
 
   # A new commit requires fresh approval
   required_pull_request_reviews {
     dismiss_stale_reviews = true
+    pull_request_bypassers = ["/coyotespike"] # until we have more reviewers :)
   }
 }
