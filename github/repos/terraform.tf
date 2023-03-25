@@ -9,6 +9,7 @@ resource "github_repository" "terraform" {
   allow_merge_commit = true
   allow_rebase_merge = false
   allow_squash_merge = false
+  auto_init          = false
 
   gitignore_template = "Terraform"
   license_template   = "mit"
