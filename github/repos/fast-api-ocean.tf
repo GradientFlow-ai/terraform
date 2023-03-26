@@ -9,6 +9,7 @@ resource "github_repository" "fast-api-ocean" {
   allow_squash_merge = false
   auto_init          = false
   has_projects       = true
+  has_issues         = true
 }
 
 

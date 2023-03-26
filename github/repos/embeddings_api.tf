@@ -9,6 +9,7 @@ resource "github_repository" "embeddings_api" {
   allow_squash_merge = false
   auto_init          = false
   has_projects       = true
+  has_issues         = true
 }
 
 
