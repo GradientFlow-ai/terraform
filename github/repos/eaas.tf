@@ -8,6 +8,8 @@ resource "github_repository" "eaas" {
   allow_rebase_merge = false
   allow_squash_merge = false
   auto_init          = false
+  has_wiki           = true
+  has_projects       = true
 }
 
 
