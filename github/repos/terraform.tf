@@ -11,6 +11,7 @@ resource "github_repository" "terraform" {
   allow_squash_merge = false
   auto_init          = false
   has_projects       = true
+  has_issues         = true
 
   gitignore_template = "Terraform"
   license_template   = "mit"

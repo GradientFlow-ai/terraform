@@ -10,6 +10,7 @@ resource "github_repository" "eaas" {
   auto_init          = false
   has_wiki           = true
   has_projects       = true
+  has_issues         = true
 }
 
 
