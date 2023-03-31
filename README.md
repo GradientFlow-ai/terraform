@@ -6,6 +6,10 @@ You will need to set `GITHUB_TOKEN` and `GITHUB_OWNER` in your environment, afte
 
 These should be set as local variables - but still pulled from the environment - to improve visibility but [there is a bug](https://github.com/integrations/terraform-provider-github/issues/1592).
 
+## Github Actions
+
+I hit odd bugs locally and no longer trust this dev environment (the S3 bucket was )
+
 ## Organization
 
 Whenever you add a subfolder, you must add to `submodules.tf`. Otherwise, when you turn terraform commands from the root, terraform will not find your submodule.
@@ -22,3 +26,5 @@ After importing a resource, I had to manually place "module" in tfstate. Otherwi
 terraform import -config=github/repos github_repository.eaas eaas
 
 the -config is important, else terraform cannot find the child repos.
+
+See [this comment](https://github.com/integrations/terraform-provider-github/issues/647#issuecomment-1484185403) for more.
