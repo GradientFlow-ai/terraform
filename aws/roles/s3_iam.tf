@@ -8,7 +8,7 @@ resource "aws_iam_role" "s3" {
         Effect = "Allow"
         Principal = {
           AWS = aws_iam_user.gh_runner.arn
-          }
+        }
       }
     ]
   })
