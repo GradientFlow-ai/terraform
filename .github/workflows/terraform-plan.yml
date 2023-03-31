@@ -1,0 +1,30 @@
+name: PR Plan
+
+on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    name: Create terraform plan
+    env:
+      GITHUB_OWNER: "GradientFlow-ai"
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      TERRAFORM_ACTIONS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-west-2
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github
+      - run: aws sts get-caller-identity
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1

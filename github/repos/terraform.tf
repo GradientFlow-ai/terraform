@@ -26,7 +26,7 @@ resource "github_branch_protection" "terraform" {
   # We are using GH actions, provide action names as list of strings
   required_status_checks {
     strict   = false
-    contexts = ["Validate terraform", "Check file formatting"]
+    contexts = ["Validate terraform", "Check file formatting", "Create terraform plan"]
   }
 
   # A new commit requires fresh approval
