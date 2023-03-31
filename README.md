@@ -16,7 +16,7 @@ Whenever you add a subfolder, you must add to `submodules.tf`. Otherwise, when y
 
 Also, add new providers to the root `providers.tf`, not in the leaf folders.
 
-## Gotchas
+## Github
 
 provider "github" {} must be absolutely empty to prevent authentication errors.
 Check terraform -version to ensure only one provider is used, integrations/github, not hashicorp/github
@@ -28,3 +28,17 @@ terraform import -config=github/repos github_repository.eaas eaas
 the -config is important, else terraform cannot find the child repos.
 
 See [this comment](https://github.com/integrations/terraform-provider-github/issues/647#issuecomment-1484185403) for more.
+
+### Plan
+
+Terraform plan required not only the github token automatically assigned by GitHub during a run (`secrets.GITHUB_TOKEN`), but a separate permissions token similar to that used locally.
+
+## AWS
+
+Again, a painful process. To securely execute Terraform plans which update AWS, via GitHub Runners, we must create a user with permissions to affect (e.g.) S3. Then the GitHub Runner assumes this role.
+
+We must create a role with a policy, then a user with a policy to assume that role. Also, we must enable OIDC for GitHub to work with AWS (this was a missing step).
+
+Or so I think, the workflow yml file does not use those credentials. It seems to use only the OIDC credentials magically working somewhere.
+
+At this time I don't know how many buckets we will create or how it will be organized.
