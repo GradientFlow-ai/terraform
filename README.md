@@ -8,7 +8,11 @@ These should be set as local variables - but still pulled from the environment -
 
 ## Github Actions
 
-I hit odd bugs locally and no longer trust this dev environment (the S3 bucket was )
+We now run and apply Terraform plans via GitHub Actions. This creates a consistent development environment and promotes reproducibility and transparency.
+
+On PR creation, Terraform will check formatting, validate, and then leave a comment with the output of `terraform plan`. The plan is then applied by commenting `terraform apply` on the PR.
+
+Note there is a bug where `githhub_branch_protection` always shows resources as changed. These can be disregarded.
 
 ## Organization
 
