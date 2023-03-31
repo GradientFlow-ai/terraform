@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "GradientFlowai-parquet-files2" {
   bucket = "gradientflow-parquet-files"
-#  bucket_prefix = "gradientFlow-parquet-files-"
+  #  bucket_prefix = "gradientFlow-parquet-files-"
 }
 
 resource "aws_s3_bucket_acl" "parquet-acl" {
