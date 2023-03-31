@@ -1,5 +1,5 @@
-resource "aws_iam_role" "example" {
-  name               = "example_role"
+resource "aws_iam_role" "s3" {
+  name               = "s3_gh_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -7,16 +7,16 @@ resource "aws_iam_role" "example" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          AWS = "arn:aws:iam::your-account-id:root"
+          AWS = "arn:aws:iam::207932680283:root"
         }
       }
     ]
   })
 }
 
-resource "aws_iam_role_policy" "example" {
-  name   = "example_policy"
-  role   = aws_iam_role.example.id
+resource "aws_iam_role_policy" "s3" {
+  name   = "s3_gh_policy"
+  role   = aws_iam_role.s3.id
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -26,6 +26,26 @@ resource "aws_iam_role_policy" "example" {
         ]
         Effect   = "Allow"
         Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_user" "gh_runner" {
+  name = "gh_runner"
+}
+
+resource "aws_iam_user_policy" "gh_runner_policy" {
+  name = "gh_runner_policye"
+  user = aws_iam_user.gh_runner.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Effect = "Allow",
+        Resource = aws_iam_role.s3.arn
       }
     ]
   })

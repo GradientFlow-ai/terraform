@@ -7,3 +7,6 @@ module "members" {
 module "s3" {
   source = "./aws/s3"
 }
+module "roles" {
+  source = "./aws/roles"
+}

@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"members","Source":"./github/members","Dir":"github/members"},{"Key":"repos","Source":"./github/repos","Dir":"github/repos"},{"Key":"s3","Source":"./aws/s3","Dir":"aws/s3"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"members","Source":"./github/members","Dir":"github/members"},{"Key":"repos","Source":"./github/repos","Dir":"github/repos"},{"Key":"roles","Source":"./aws/roles","Dir":"aws/roles"},{"Key":"s3","Source":"./aws/s3","Dir":"aws/s3"}]}
