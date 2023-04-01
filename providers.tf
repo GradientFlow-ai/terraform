@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 4.0"
     }
+    vercel = {
+      source  = "vercel/vercel"
+      version = "~> 0.4"
+    }
   }
 }
 
@@ -26,3 +30,10 @@ module "oidc_github" {
     "GradientFlow-ai/terraform",
   ]
 }
+
+provider "vercel" {
+  api_token = var.TF_VAR_VERCEL_API_TOKEN
+  team      = "team_mllS6R4z5VZ2JecC9ZnMxi5g"
+}
+
+variable "TF_VAR_VERCEL_API_TOKEN" {}

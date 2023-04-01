@@ -10,3 +10,11 @@ module "s3" {
 module "roles" {
   source = "./aws/roles"
 }
+module "vercel" {
+  source = "./vercel"
+
+  AWS_ACCESS_KEY_ID     = var.TF_VAR_AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY = var.TF_VAR_AWS_SECRET_ACCESS_KEY
+}
+variable "TF_VAR_AWS_ACCESS_KEY_ID" {}
+variable "TF_VAR_AWS_SECRET_ACCESS_KEY" {}
