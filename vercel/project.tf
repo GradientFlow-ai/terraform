@@ -28,10 +28,3 @@ resource "vercel_project_environment_variable" "aws_secret_access_key" {
   value      = var.AWS_SECRET_ACCESS_KEY
   target     = ["production"]
 }
-
-resource "vercel_project_environment_variable" "test_key" {
-  project_id = vercel_project.eaas.id
-  key        = "TEST_DUMMY_KEY"
-  value      = "hello-world"
-  target     = ["production"]
-}
