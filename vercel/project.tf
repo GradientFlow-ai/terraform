@@ -8,8 +8,12 @@ resource "vercel_project" "eaas" {
   }
 }
 
-variable "AWS_ACCESS_KEY_ID" {}
-variable "AWS_SECRET_ACCESS_KEY" {}
+variable "AWS_ACCESS_KEY_ID" {
+  type = string
+}
+variable "AWS_SECRET_ACCESS_KEY" {
+  type = string
+}
 
 resource "vercel_project_environment_variable" "aws_access_key_id" {
   project_id = vercel_project.eaas.id
