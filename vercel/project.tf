@@ -30,7 +30,7 @@ resource "vercel_project_environment_variable" "aws_secret_access_key" {
 }
 resource "vercel_project_environment_variable" "NEXTAUTH_URL" {
   project_id = vercel_project.eaas.id
-  key        = ""NEXTAUTH_URL"
+  key        = "NEXTAUTH_URL"
   value      = "https://www.gradientflow.ai/api/auth"
   target     = ["production"]
 }

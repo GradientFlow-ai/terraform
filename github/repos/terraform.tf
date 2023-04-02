@@ -39,11 +39,11 @@ resource "github_branch_protection" "terraform" {
 # These are the only secrets we must set by hand.
 # They enable terraform to fetch all the others from AWS Secrets Manager
 resource "github_actions_secret" "secrets_manager_id" {
-  repository       = "terraform"
-  secret_name      = "AWS_MANAGER_ID"
+  repository  = "terraform"
+  secret_name = "AWS_MANAGER_ID"
 }
 
 resource "github_actions_secret" "secrets_manager_key" {
-  repository       = "terraform"
-  secret_name      = "AWS_MANAGER_KEY"
+  repository  = "terraform"
+  secret_name = "AWS_MANAGER_KEY"
 }
