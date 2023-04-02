@@ -10,6 +10,9 @@ module "s3" {
 module "roles" {
   source = "./aws/roles"
 }
+module "kms" {
+  source = "./aws/kms"
+}
 module "vercel" {
   source = "./vercel"
 
