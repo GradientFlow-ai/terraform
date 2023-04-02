@@ -47,3 +47,8 @@ resource "github_actions_secret" "secrets_manager_key" {
   repository  = "terraform"
   secret_name = "AWS_MANAGER_KEY"
 }
+
+resource "github_actions_secret" "secrets_manager_key" {
+  repository  = "terraform"
+  secret_name = "SUPER_GITHUB_TOKEN"
+}

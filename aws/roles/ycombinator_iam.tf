@@ -1,5 +1,5 @@
-resource "aws_iam_role" "s3" {
-  name = "s3_gh_role"
+resource "aws_iam_role" "create_roles" {
+  name = "create_roles"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -14,17 +14,20 @@ resource "aws_iam_role" "s3" {
   })
 }
 
-resource "aws_iam_role_policy" "s3" {
-  name = "s3_gh_policy"
-  role = aws_iam_role.s3.id
+resource "aws_iam_role_policy" "create_roles_policy" {
+  name = "create_roles_policy"
+  role = aws_iam_role.create_roles.id
+
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Action = [
-          "s3:*"
-        ]
-        Effect   = "Allow"
+          "iam:CreateRole",
+          "iam:PutRolePolicy",
+          "iam:PassRole"
+        ],
+        Effect   = "Allow",
         Resource = "*"
       }
     ]

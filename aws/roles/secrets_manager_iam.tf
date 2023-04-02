@@ -1,9 +1,18 @@
-resource "aws_iam_user" "secrets_manager_user" {
-  name = "secrets_manager_user"
-}
+resource "aws_iam_role" "secrets_manager_role" {
+  name = "secrets_manager_role"
 
-resource "aws_iam_access_key" "secrets_manager_user_key" {
-  user = aws_iam_user.secrets_manager_user.name
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole",
+        Effect = "Allow",
+        Principal = {
+          AWS = aws_iam_user.gh_runner.arn
+        }
+      }
+    ]
+  })
 }
 
 resource "aws_iam_policy" "secrets_manager_policy" {
@@ -17,16 +26,15 @@ resource "aws_iam_policy" "secrets_manager_policy" {
         Action = [
           "secretsmanager:GetSecretValue",
           "secretsmanager:DescribeSecret",
-          "secretsmanager:ListSecrets"
+          "secretsmanager:ListSecrets",
+          "secretsmanager:CreateSecret",
+          "secretsmanager:UpdateSecret",
+          "secretsmanager:DeleteSecret",
+          "secretsmanager:TagResource",
+          "secretsmanager:UntagResource"
         ]
         Resource = "*"
       }
     ]
   })
-}
-
-resource "aws_iam_policy_attachment" "secrets_manager_policy_attachment" {
-  name       = "secrets_manager_policy_attachment"
-  policy_arn = aws_iam_policy.secrets_manager_policy.arn
-  users      = [aws_iam_user.secrets_manager_user.name]
 }
