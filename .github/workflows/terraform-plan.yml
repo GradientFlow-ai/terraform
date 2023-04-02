@@ -22,11 +22,10 @@ jobs:
           role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github
       - run: aws sts get-caller-identity
 
-
       - name: Decrypt secrets
         run: |
-          echo "${{ secrets.MY_PGP_PRIVATE_KEY }}" > sops-secret.asc
-          echo "${{ secrets.MY_PGP_PASSPHRASE }}" | gpg --batch --yes --decrypt -s -o passphrase.txt
+          echo "${{ secrets.MY_PGP_PRIVATE_KEY }}" | base64 --decode > sops-secret.asc
+          echo "${{ secrets.MY_PGP_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 -o passphrase.txt
           sops -d secrets.yaml --pgp sops-secret.asc > decryptsecrets.yaml
 
       - name: Set up Terraform
