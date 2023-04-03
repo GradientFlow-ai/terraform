@@ -6,11 +6,7 @@ You will need to set `GITHUB_TOKEN` and `GITHUB_OWNER` in your environment, afte
 
 These should be set as local variables - but still pulled from the environment - to improve visibility but [there is a bug](https://github.com/integrations/terraform-provider-github/issues/1592).
 
-## sops
-
-I would like to control Vercel project env variables through GH. To allow this, we need to set all env variables here in GH. To avoid exposing them in tfstate, however, we cannot just set the secrets as a GH env var, and then use TF to set them as Vercel env vars. Instead we must save them in an encrypted file via sops, set the relevant sops info in GH, and then TF can decrypt use them on the fly, without saving in tfstate.
-
-We haven't done this yet because it's a PITA and other engineering tasks are more pressing.
+## Secrets Management
 
 ## ClickOps
 
