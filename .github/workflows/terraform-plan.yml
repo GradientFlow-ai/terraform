@@ -15,6 +15,16 @@ jobs:
       TERRAFORM_ACTIONS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: us-west-2
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github
+      - run: aws sts get-caller-identity
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Install git-crypt
         run: |
           sudo apt-get update
@@ -28,16 +38,6 @@ jobs:
 
       - name: Unlock encrypted files with git-crypt
         run: git-crypt unlock
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-region: us-west-2
-          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github
-      - run: aws sts get-caller-identity
-
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
