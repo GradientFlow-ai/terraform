@@ -44,3 +44,16 @@ resource "github_actions_secret" "SHADOW_DATABASE_URL" {
   secret_name     = "SHADOW_DATABASE_URL"
   plaintext_value = var.SHADOW_DATABASE_URL
 }
+
+variable "DATABASE_URL" {
+  type        = string
+  description = "Allows eaas to access Supabase postgres"
+  default     = "foo"
+  sensitive   = true
+}
+variable "SHADOW_DATABASE_URL" {
+  type        = string
+  description = "Allows eaas to access Prisma postgres shadow on Supabase"
+  default     = "bar"
+  sensitive   = true
+}
