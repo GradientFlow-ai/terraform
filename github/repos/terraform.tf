@@ -12,6 +12,7 @@ resource "github_repository" "terraform" {
   auto_init          = false
   has_projects       = true
   has_issues         = true
+  has_wiki           = true
 
   gitignore_template = "Terraform"
   license_template   = "mit"
