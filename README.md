@@ -1,5 +1,13 @@
 # Infrastructure Management
 
+## Github Actions
+
+We run and apply Terraform plans via GitHub Actions. This creates a consistent development environment and promotes reproducibility and transparency.
+
+On PR creation, Terraform will check formatting, validate, and then leave a comment with the output of `terraform plan`. The plan is then applied by commenting `terraform apply` on the PR.
+
+Note there is a bug where `githhub_branch_protection` always shows resources as changed. These "changes" can be disregarded.
+
 ## Usage
 
 You will need to set `GITHUB_TOKEN` and `GITHUB_OWNER` in your environment, after creating a personal access token on GitHub.
@@ -8,7 +16,9 @@ These should be set as local variables - but still pulled from the environment -
 
 ## Environmental Variables and Secrets
 
-We only need to set one environmental variable in this repo on GitHub. This variable, a private GPG key, encrypts and decrypts the secrets files, which are `secrets.auto.tfvars` and the `tfstate` file. All other secrets are assigned to repos and to platforms like Vercel via Terraform, that is through this repo, from the `tfvars` file.
+We only need to set a few environmental variables in this repo on GitHub. We have to set AWS access keys, because those are used by the runners before they can decrypt all the other secrets using the last env var we must set manually.
+
+This last variable, a private GPG key, encrypts and decrypts the secrets files, which are `secrets.auto.tfvars` and the `tfstate` file. All other secrets are assigned to repos and to platforms like Vercel via Terraform (that is, through this repo), from the `tfvars` file.
 
 We are able to commit this file to git because it and the state file are encrypted. You can find the details about how to do this in the wiki. If you need to add or change these secrets, though, you'll need that private key so that git will decrypt the files for you locally. If you just need to add repos or make other environmental changes, you won't need it.
 
@@ -23,19 +33,13 @@ However, if you assign any secret via Terraform, Terraform will save the secret 
 
 This isn't theoretical. Bad guys use automated tools to scan GitHub and will immediately rack up tens of thousands of dollars of charges on AWS and other locations. For this reason, the good guys (AWS and GitHub) also automatically scan GitHub, and AWS will shut down your account immediately if they detect you have exposed a secret. This is a massive pain even if the bad guys don't getcha.
 
+Don't be scared, we already encrypt everything and we have GitGuardian scanning our repos. Just to give you background.
+
 ## ClickOps
 
 - env vars in GH
 - same in vercel
 - Still gotta fetch IAM user keys from AWS and put them in the above two places.
-
-## Github Actions
-
-We run and apply Terraform plans via GitHub Actions. This creates a consistent development environment and promotes reproducibility and transparency.
-
-On PR creation, Terraform will check formatting, validate, and then leave a comment with the output of `terraform plan`. The plan is then applied by commenting `terraform apply` on the PR.
-
-Note there is a bug where `githhub_branch_protection` always shows resources as changed. These "changes" can be disregarded.
 
 ## Organization
 
