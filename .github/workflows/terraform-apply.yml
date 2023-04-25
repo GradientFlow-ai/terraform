@@ -22,6 +22,20 @@ jobs:
         with:
           ref: refs/pull/${{ github.event.issue.number }}/merge
 
+      - name: Install git-crypt
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-crypt
+
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}" | gpg --import --batch
+        env:
+          ACTIONS_GPG_PRIVATE_KEY: ${{ secrets.ACTIONS_GPG_PRIVATE_KEY }}
+
+      - name: Unlock encrypted files with git-crypt
+        run: git-crypt unlock
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
