@@ -1,5 +1,5 @@
 resource "vercel_project" "eaas" {
-  name      = "vercel-project-eaas"
+  name      = "eaas"
   framework = "nextjs"
 
   git_repository = {
