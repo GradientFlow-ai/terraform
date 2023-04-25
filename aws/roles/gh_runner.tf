@@ -11,8 +11,7 @@ resource "aws_iam_user_policy" "gh_runner_policy" {
     Statement = [
       {
         Action = [
-          "sts:AssumeRole",
-          "iam:UntagUser"
+          "sts:AssumeRole"
         ],
         Effect   = "Allow",
         Resource = aws_iam_role.s3.arn
