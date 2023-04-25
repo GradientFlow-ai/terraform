@@ -5,13 +5,13 @@ variable "BASE_URL" {
 }
 
 ######################### terraform repo secrets ############################
-variable "TF_VAR_ADMIN_AWS_ACCESS_KEY_ID" {
+variable "AWS_ACCESS_KEY_ID" {
   type        = string
   description = "Admin account that can create IAM roles. Created in roles/admin"
   default     = "secret"
   sensitive   = true
 }
-variable "TF_VAR_ADMIN_AWS_SECRET_ACCESS_KEY" {
+variable "AWS_SECRET_ACCESS_KEY" {
   type        = string
   description = "Admin account that can create IAM roles. Created in roles/admin"
   default     = "secret"
@@ -59,13 +59,13 @@ variable "S3_BUCKET_NAME" {
   default     = "secret"
   sensitive   = true
 }
-variable "AWS_ACCESS_KEY_ID" {
+variable "VERCEL_AWS_ACCESS_KEY_ID" {
   type        = string
   description = "Gives eaas permission to store documents on S3"
   default     = "secret"
   sensitive   = true
 }
-variable "AWS_SECRET_ACCESS_KEY" {
+variable "VERCEL_AWS_SECRET_ACCESS_KEY" {
   type        = string
   description = "Gives eaas permission to store documents on S3"
   default     = "secret"
