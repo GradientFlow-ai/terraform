@@ -1,12 +1,9 @@
 module "repos" {
   source = "./github/repos"
 
-  DATABASE_URL                 = var.DATABASE_URL
-  SHADOW_DATABASE_URL          = var.SHADOW_DATABASE_URL
-  TF_VAR_AWS_ACCESS_KEY_ID     = var.TF_VAR_AWS_ACCESS_KEY_ID
-  TF_VAR_AWS_SECRET_ACCESS_KEY = var.TF_VAR_AWS_SECRET_ACCESS_KEY
-  SUPER_GITHUB_TOKEN           = var.SUPER_GITHUB_TOKEN
-  VERCEL_API_TOKEN             = var.VERCEL_API_TOKEN
+  DATABASE_URL        = var.DATABASE_URL
+  SHADOW_DATABASE_URL = var.SHADOW_DATABASE_URL
+  SUPER_GITHUB_TOKEN  = var.SUPER_GITHUB_TOKEN
 }
 module "members" {
   source = "./github/members"

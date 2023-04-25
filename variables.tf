@@ -5,15 +5,21 @@ variable "BASE_URL" {
 }
 
 ######################### terraform repo secrets ############################
-variable "TF_VAR_AWS_ACCESS_KEY_ID" {
+variable "TF_VAR_ADMIN_AWS_ACCESS_KEY_ID" {
   type        = string
-  description = "Allows Terraform to manage S3. Created in roles/s3_iam"
+  description = "Admin account that can create IAM roles. Created in roles/admin"
   default     = "secret"
   sensitive   = true
 }
-variable "TF_VAR_AWS_SECRET_ACCESS_KEY" {
+variable "TF_VAR_ADMIN_AWS_SECRET_ACCESS_KEY" {
   type        = string
-  description = "Allows Terraform to manage S3. Created in roles/s3_iam"
+  description = "Admin account that can create IAM roles. Created in roles/admin"
+  default     = "secret"
+  sensitive   = true
+}
+variable "TF_VAR_AWS_ACCOUNT_ID" {
+  type        = string
+  description = "Allows GitHub runner to authenticate with AWS. Role created manually on AWS."
   default     = "secret"
   sensitive   = true
 }
@@ -23,7 +29,7 @@ variable "SUPER_GITHUB_TOKEN" {
   default     = "secret"
   sensitive   = true
 }
-variable "VERCEL_API_TOKEN" {
+variable "TF_VAR_VERCEL_API_TOKEN" {
   type        = string
   description = "Allows Terraform's Vercel provider to manage Vercel projects"
   default     = "secret"
