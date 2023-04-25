@@ -10,9 +10,11 @@ Note there is a bug where `githhub_branch_protection` always shows resources as 
 
 ## Usage
 
-You will need to set `GITHUB_TOKEN` and `GITHUB_OWNER` in your environment, after creating a personal access token on GitHub.
+You will need to set `GITHUB_TOKEN` and `GITHUB_OWNER` in your environment (e.g. bash profile), after creating a personal access token on GitHub.
 
 These should be set as local variables - but still pulled from the environment - to improve visibility but [there is a bug](https://github.com/integrations/terraform-provider-github/issues/1592).
+
+Then you will be able to run terraform locally.
 
 ## Environmental Variables and Secrets
 
