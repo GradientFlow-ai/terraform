@@ -33,3 +33,27 @@ resource "github_branch_protection" "eaas" {
     pull_request_bypassers = ["/coyotespike"] # until we have more reviewers :)
   }
 }
+
+resource "github_actions_secret" "DATABASE_URL" {
+  repository      = "eaas"
+  secret_name     = "DATABASE_URL"
+  plaintext_value = var.DATABASE_URL
+}
+resource "github_actions_secret" "SHADOW_DATABASE_URL" {
+  repository      = "eaas"
+  secret_name     = "SHADOW_DATABASE_URL"
+  plaintext_value = var.SHADOW_DATABASE_URL
+}
+
+variable "DATABASE_URL" {
+  type        = string
+  description = "Allows eaas to access Supabase postgres"
+  default     = "foo"
+  sensitive   = true
+}
+variable "SHADOW_DATABASE_URL" {
+  type        = string
+  description = "Allows eaas to access Prisma postgres shadow on Supabase"
+  default     = "bar"
+  sensitive   = true
+}

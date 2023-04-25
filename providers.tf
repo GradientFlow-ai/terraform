@@ -32,8 +32,6 @@ module "oidc_github" {
 }
 
 provider "vercel" {
-  api_token = var.TF_VAR_VERCEL_API_TOKEN
+  api_token = var.VERCEL_API_TOKEN
   team      = "team_mllS6R4z5VZ2JecC9ZnMxi5g"
 }
-
-variable "TF_VAR_VERCEL_API_TOKEN" {}

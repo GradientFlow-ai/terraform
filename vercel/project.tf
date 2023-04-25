@@ -8,29 +8,61 @@ resource "vercel_project" "eaas" {
   }
 }
 
-variable "AWS_ACCESS_KEY_ID" {
-  type = string
-}
-variable "AWS_SECRET_ACCESS_KEY" {
-  type = string
-}
+# These lines allow the parent module to pass in the root variables
+variable "AWS_ACCESS_KEY_ID" {}
+variable "AWS_SECRET_ACCESS_KEY" {}
+variable "S3_BUCKET_NAME" {}
+variable "GITHUB_ID" {}
+variable "GITHUB_SECRET" {}
+variable "GOOGLE_CLIENT_ID" {}
+variable "GOOGLE_CLIENT_SECRET" {}
+variable "NEXTAUTH_URL" {}
 
-resource "vercel_project_environment_variable" "aws_access_key_id" {
+resource "vercel_project_environment_variable" "AWS_ACCESS_KEY_ID" {
   project_id = vercel_project.eaas.id
   key        = "AWS_ACCESS_KEY_ID"
   value      = var.AWS_ACCESS_KEY_ID
   target     = ["production"]
 }
-
-resource "vercel_project_environment_variable" "aws_secret_access_key" {
+resource "vercel_project_environment_variable" "AWS_SECRET_ACCESS_KEY" {
   project_id = vercel_project.eaas.id
   key        = "AWS_SECRET_ACCESS_KEY"
   value      = var.AWS_SECRET_ACCESS_KEY
   target     = ["production"]
 }
+resource "vercel_project_environment_variable" "S3_BUCKET_NAME" {
+  project_id = vercel_project.eaas.id
+  key        = "S3_BUCKET_NAME"
+  value      = var.S3_BUCKET_NAME
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "GITHUB_ID" {
+  project_id = vercel_project.eaas.id
+  key        = "GITHUB_ID"
+  value      = var.GITHUB_ID
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "GITHUB_SECRET" {
+  project_id = vercel_project.eaas.id
+  key        = "GITHUB_SECRET"
+  value      = var.GITHUB_SECRET
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "GOOGLE_CLIENT_ID" {
+  project_id = vercel_project.eaas.id
+  key        = "GOOGLE_CLIENT_ID"
+  value      = var.GOOGLE_CLIENT_ID
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "GOOGLE_CLIENT_SECRET" {
+  project_id = vercel_project.eaas.id
+  key        = "GOOGLE_CLIENT_SECRET"
+  value      = var.GOOGLE_CLIENT_SECRET
+  target     = ["production"]
+}
 resource "vercel_project_environment_variable" "NEXTAUTH_URL" {
   project_id = vercel_project.eaas.id
   key        = "NEXTAUTH_URL"
-  value      = "https://www.gradientflow.ai/api/auth"
+  value      = var.NEXTAUTH_URL
   target     = ["production"]
 }
