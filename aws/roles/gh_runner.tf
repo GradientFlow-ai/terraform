@@ -17,6 +17,13 @@ resource "aws_iam_user_policy" "gh_runner_policy" {
         Resource = aws_iam_role.s3.arn
         Resource = aws_iam_role.create_roles.arn
         Resource = aws_iam_role.secrets_manager_role.arn
+      },
+      {
+        Action = [
+          "iam:UntagUser"
+        ],
+        Effect   = "Allow",
+        Resource = "*"
       }
     ]
   })
