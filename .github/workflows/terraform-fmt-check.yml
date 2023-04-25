@@ -10,3 +10,13 @@ jobs:
 
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
+        with:
+            path: ./vercel
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+            path: ./github
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+            path: ./aws
