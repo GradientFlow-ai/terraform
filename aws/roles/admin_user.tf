@@ -22,6 +22,7 @@ resource "aws_iam_user_policy" "admin_user_policy" {
           "iam:CreateUser",
           "iam:DeleteRole",
           "iam:DeleteRolePolicy",
+          "iam:DeletePolicy",
           "iam:DeleteUser",
           "iam:DeleteUserPolicy",
           "iam:DetachRolePolicy",
