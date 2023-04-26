@@ -1,5 +1,5 @@
 resource "aws_iam_user" "vercel_s3_user" {
-  name = "VercelS3User"
+  name = "VercelS3"
 }
 
 resource "aws_iam_access_key" "vercel_s3_user_key" {
