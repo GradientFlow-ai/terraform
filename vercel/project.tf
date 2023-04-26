@@ -9,25 +9,32 @@ resource "vercel_project" "eaas" {
 }
 
 # These lines allow the parent module to pass in the root variables
-variable "AWS_ACCESS_KEY_ID" {}
-variable "AWS_SECRET_ACCESS_KEY" {}
 variable "S3_BUCKET_NAME" {}
 variable "GITHUB_ID" {}
 variable "GITHUB_SECRET" {}
 variable "GOOGLE_CLIENT_ID" {}
 variable "GOOGLE_CLIENT_SECRET" {}
 variable "NEXTAUTH_URL" {}
+variable "s3_user_access_key_id" {
+  type        = string
+  description = "S3 user access key ID for Vercel"
+}
+variable "s3_user_secret_access_key" {
+  type        = string
+  description = "S3 user secret access key for Vercel"
+}
 
 resource "vercel_project_environment_variable" "AWS_ACCESS_KEY_ID" {
   project_id = vercel_project.eaas.id
   key        = "AWS_ACCESS_KEY_ID"
-  value      = var.AWS_ACCESS_KEY_ID
+  value      = var.s3_user_access_key_id
   target     = ["production"]
 }
+
 resource "vercel_project_environment_variable" "AWS_SECRET_ACCESS_KEY" {
   project_id = vercel_project.eaas.id
   key        = "AWS_SECRET_ACCESS_KEY"
-  value      = var.AWS_SECRET_ACCESS_KEY
+  value      = var.s3_user_secret_access_key
   target     = ["production"]
 }
 resource "vercel_project_environment_variable" "S3_BUCKET_NAME" {
