@@ -18,7 +18,7 @@ resource "aws_iam_user_policy" "admin_user_policy" {
           "iam:AddUserToGroup",
           "iam:AttachRolePolicy",
           "iam:AttachUserPolicy",
-          "iam:CreatePolicy",
+          "iam:CreateAccessKey",
           "iam:CreateRole",
           "iam:CreateUser",
           "iam:DeleteRole",
