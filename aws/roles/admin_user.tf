@@ -21,6 +21,7 @@ resource "aws_iam_user_policy" "admin_user_policy" {
           "iam:CreateAccessKey",
           "iam:CreateRole",
           "iam:CreateUser",
+          "iam:DeleteAccessKey",
           "iam:DeleteRole",
           "iam:DeleteRolePolicy",
           "iam:DeletePolicy",
