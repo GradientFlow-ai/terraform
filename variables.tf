@@ -59,19 +59,13 @@ variable "S3_BUCKET_NAME" {
   default     = "secret"
   sensitive   = true
 }
-variable "VERCEL_AWS_ACCESS_KEY_ID" {
-  type        = string
-  description = "Gives eaas permission to store documents on S3"
-  default     = "secret"
-  sensitive   = true
-}
-variable "VERCEL_AWS_SECRET_ACCESS_KEY" {
-  type        = string
-  description = "Gives eaas permission to store documents on S3"
-  default     = "secret"
-  sensitive   = true
-}
 
+variable "S3_BUCKET_REGION" {
+  type        = string
+  description = "Allows serverless functions to make correct S3 url"
+  default     = "secret"
+  sensitive   = true
+}
 
 ######################### vercel project: platform secrets ############################
 variable "GITHUB_ID" {
