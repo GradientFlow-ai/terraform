@@ -22,6 +22,7 @@ module "vercel" {
   s3_user_secret_access_key = module.roles.vercel_s3_user_secret_key
 
   S3_BUCKET_NAME       = var.S3_BUCKET_NAME
+  S3_BUCKET_REGION     = var.S3_BUCKET_REGION
   GITHUB_ID            = var.GITHUB_ID
   GITHUB_SECRET        = var.GITHUB_SECRET
   GOOGLE_CLIENT_ID     = var.GOOGLE_CLIENT_ID

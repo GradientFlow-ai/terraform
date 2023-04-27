@@ -10,6 +10,7 @@ resource "vercel_project" "eaas" {
 
 # These lines allow the parent module to pass in the root variables
 variable "S3_BUCKET_NAME" {}
+variable "S3_BUCKET_REGION" {}
 variable "GITHUB_ID" {}
 variable "GITHUB_SECRET" {}
 variable "GOOGLE_CLIENT_ID" {}
@@ -41,6 +42,12 @@ resource "vercel_project_environment_variable" "S3_BUCKET_NAME" {
   project_id = vercel_project.eaas.id
   key        = "S3_BUCKET_NAME"
   value      = var.S3_BUCKET_NAME
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "S3_BUCKET_REGION" {
+  project_id = vercel_project.eaas.id
+  key        = "AWS_REGION"
+  value      = var.S3_BUCKET_REGION
   target     = ["production"]
 }
 resource "vercel_project_environment_variable" "GITHUB_ID" {
