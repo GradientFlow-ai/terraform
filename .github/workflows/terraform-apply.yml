@@ -52,4 +52,4 @@ jobs:
 
       - name: Push updated state file
         run: |
-          git push origin HEAD:${{ github.event.issue.pull_request.head.ref }}
+          git push origin HEAD:${{ github.event.issue.pull_request.base.ref }}
