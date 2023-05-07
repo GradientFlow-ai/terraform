@@ -40,13 +40,13 @@ variable "TF_VAR_VERCEL_API_TOKEN" {
 ######################### eaas repo secrets ############################
 variable "DATABASE_URL" {
   type        = string
-  description = "Allows eaas to access Supabase postgres"
+  description = "Allows github actions runner to access Supabase postgres"
   default     = "foo"
   sensitive   = true
 }
 variable "SHADOW_DATABASE_URL" {
   type        = string
-  description = "Allows eaas to access Prisma postgres shadow on Supabase"
+  description = "Allows github actions runner to access Prisma postgres shadow on Supabase"
   default     = "bar"
   sensitive   = true
 }
@@ -82,20 +82,25 @@ variable "GITHUB_SECRET" {
 }
 variable "GOOGLE_CLIENT_ID" {
   type        = string
-  description = "Enables Vercel to use Google as OAuth provider"
+  description = "Enables Vercel to use Google as OAuth provider. Currently unused."
   default     = "secret"
   sensitive   = true
 }
 variable "GOOGLE_CLIENT_SECRET" {
   type        = string
-  description = "Enables Vercel to use Google as OAuth provider"
+  description = "Enables Vercel to use Google as OAuth provider. Currently unused."
   default     = "secret"
   sensitive   = true
 }
-
-variable "NEXTAUTH_URL" {
+variable "SUPABASE_URL" {
   type        = string
-  description = "Serves as callback for Vercel OAuth"
+  description = "Enables serverless functions (including auth) to access Supabase. Same as DATABASE_URL"
+  default     = "url"
+  sensitive   = true
+}
+variable "SHADOW_SUPABASE_URL" {
+  type        = string
+  description = "Enables serverless functions (including auth) to access Supabase. Same as SHADOW_DATABASE_URL"
   default     = "url"
   sensitive   = true
 }
