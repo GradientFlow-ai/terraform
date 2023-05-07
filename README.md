@@ -1,4 +1,4 @@
-# Infrastructure Management
+# GradientFlow Infrastructure As Code
 
 ## Github Actions
 
@@ -6,7 +6,11 @@ We run and apply Terraform plans via GitHub Actions. This creates a consistent d
 
 On PR creation, Terraform will check formatting, validate, and then leave a comment with the output of `terraform plan`. The plan is then applied by commenting `terraform apply` on the PR.
 
-Note there is a bug where `githhub_branch_protection` always shows resources as changed. These "changes" can be disregarded.
+Note there is a bug where `github_branch_protection` always shows resources as changed. These "changes" can be disregarded.
+
+## Spacelift
+
+In the future we may investigate using Spacelift to apply Terraform for us, still triggered as part of CI/CD through GitHub Actions.
 
 ## Usage
 
