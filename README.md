@@ -29,6 +29,7 @@ If you need the key, just contact one of the keyholders and we'll share it with 
 ### Why and Wherefore
 
 You should manage secrets via Terraform. As said above, you can set all GitHub repo secrets through Terraform, as well as Vercel secrets and so on.
+
 As of April 2023, when the project is young, we have about 15 env vars to manage, in 3 different locations. That is already a lot! We want to document this in code and we want to avoid setting them manually, just like the rest of our infrastructure.
 
 However, if you assign any secret via Terraform, Terraform will save the secret in the tfstate file. There is absolutely no way around this, regardless of where you pass the secret in from or how you pass it in. For this reason, the tfstate and tfvars files must either never be committed to git and stored in some other secure location, or they must be encrypted before committing them.
@@ -39,15 +40,20 @@ Don't be scared, we already encrypt everything and we have GitGuardian scanning 
 
 ## ClickOps
 
-- env vars in GH
-- same in vercel
 - Still gotta fetch IAM user keys from AWS and put them in the above two places.
+- See the documentation in the eaas repo about Vercel and Supabase.
 
 ## Organization
 
 Whenever you add a subfolder, you must add to `submodules.tf`. Otherwise, when you turn terraform commands from the root, terraform will not find your submodule.
 
 Also, add new providers to the root `providers.tf`, not in the leaf folders.
+
+You will find that you have several errors when you add a resource, unless you declare the variables in several places. TF's complaining is enough to figure this out, though.
+
+## Terragrunt
+
+In the future we'll probably use Terragrunt to make organization simpler.
 
 ## Github
 
