@@ -40,16 +40,6 @@ jobs:
       - name: terraform apply
         uses: dflook/terraform-apply@v1
 
-      - name: Configure Git user
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+      - name: Commit and push updated state file
+        uses: stefanzweifel/git-auto-commit-action@v4
 
-      - name: Commit updated state file
-        run: |
-          git add *.tfstate
-          git commit -m "Update Terraform state file"
-
-      - name: Push updated state file
-        run: |
-          git push origin HEAD:refs/heads/${{ github.event.issue.pull_request.head.ref }}
