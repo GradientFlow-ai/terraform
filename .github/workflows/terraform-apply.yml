@@ -51,4 +51,5 @@ jobs:
           git commit -m "Update Terraform state file"
 
       - name: Push updated state file
-        uses: stefanzweifel/git-auto-commit-action@v4
+        run: |
+          git push origin HEAD:refs/heads/${{ github.event.issue.pull_request.head.ref }}
