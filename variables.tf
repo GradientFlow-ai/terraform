@@ -98,9 +98,9 @@ variable "SUPABASE_URL" {
   default     = "url"
   sensitive   = true
 }
-variable "SHADOW_SUPABASE_URL" {
+variable "SUPABASE_ANON_KEY" {
   type        = string
-  description = "Enables serverless functions (including auth) to access Supabase. Same as SHADOW_DATABASE_URL"
-  default     = "url"
+  description = "Enables serverless functions to access Supabase."
+  default     = "key"
   sensitive   = true
 }

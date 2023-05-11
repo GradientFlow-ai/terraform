@@ -16,7 +16,7 @@ variable "GITHUB_SECRET" {}
 variable "GOOGLE_CLIENT_ID" {}
 variable "GOOGLE_CLIENT_SECRET" {}
 variable "SUPABASE_URL" {}
-variable "SHADOW_SUPABASE_URL" {}
+variable "SUPABASE_ANON_KEY" {}
 variable "s3_user_access_key_id" {
   type        = string
   description = "S3 user access key ID for Vercel"
@@ -77,13 +77,13 @@ resource "vercel_project_environment_variable" "GOOGLE_CLIENT_SECRET" {
 }
 resource "vercel_project_environment_variable" "SUPABASE_URL" {
   project_id = vercel_project.eaas.id
-  key        = "DATABASE_URL" # Renamed to match eaas frontend usage
+  key        = "DATABASE_HTTP_URL" # Renamed to match eaas frontend usage
   value      = var.SUPABASE_URL
   target     = ["production"]
 }
-resource "vercel_project_environment_variable" "SHADOW_SUPABASE_URL" {
+resource "vercel_project_environment_variable" "SUPABASE_ANON_KEY" {
   project_id = vercel_project.eaas.id
-  key        = "SHADOW_DATABASE_URL" # Renamed to match eaas frontend usage
-  value      = var.SHADOW_SUPABASE_URL
+  key        = "SUPABASE_ANON_KEY"
+  value      = var.SUPABASE_ANON_KEY
   target     = ["production"]
 }
