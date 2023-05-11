@@ -94,7 +94,7 @@ variable "GOOGLE_CLIENT_SECRET" {
 }
 variable "SUPABASE_URL" {
   type        = string
-  description = "Enables serverless functions (including auth) to access Supabase. Same as DATABASE_URL"
+  description = "Enables serverless functions to access Supabase"
   default     = "url"
   sensitive   = true
 }
@@ -102,5 +102,11 @@ variable "SUPABASE_ANON_KEY" {
   type        = string
   description = "Enables serverless functions to access Supabase."
   default     = "key"
+  sensitive   = true
+}
+variable "PRISMA_URL" {
+  type        = string
+  description = "Prisma works with NextAuth to access Supabase with this. Same as DATABASE_URL."
+  default     = "url"
   sensitive   = true
 }
