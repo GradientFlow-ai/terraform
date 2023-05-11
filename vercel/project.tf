@@ -17,6 +17,7 @@ variable "GOOGLE_CLIENT_ID" {}
 variable "GOOGLE_CLIENT_SECRET" {}
 variable "SUPABASE_URL" {}
 variable "SUPABASE_ANON_KEY" {}
+variable "PRISMA_URL" {}
 variable "s3_user_access_key_id" {
   type        = string
   description = "S3 user access key ID for Vercel"
@@ -85,5 +86,11 @@ resource "vercel_project_environment_variable" "SUPABASE_ANON_KEY" {
   project_id = vercel_project.eaas.id
   key        = "SUPABASE_ANON_KEY"
   value      = var.SUPABASE_ANON_KEY
+  target     = ["production"]
+}
+resource "vercel_project_environment_variable" "PRISMA_URL" {
+  project_id = vercel_project.eaas.id
+  key        = "DATABASE_URL" # See prisma schema
+  value      = var.PRISMA_URL
   target     = ["production"]
 }
