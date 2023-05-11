@@ -84,7 +84,7 @@ resource "vercel_project_environment_variable" "SUPABASE_URL" {
 }
 resource "vercel_project_environment_variable" "SUPABASE_ANON_KEY" {
   project_id = vercel_project.eaas.id
-  key        = "SUPABASE_ANON_KEY"
+  key        = "PUBLIC_SUPABASE_ANON_KEY"
   value      = var.SUPABASE_ANON_KEY
   target     = ["production"]
 }
